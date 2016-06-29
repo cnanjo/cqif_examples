@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Measure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://hl7.org/fhir ../../../resources/fhir-all-xsd/measure.xsd"
+ xmlns="http://hl7.org/fhir">
+    <id value="use-of-aspirin-or-other-antithrombotic"/>
+    <moduleMetadata>
+        <identifier>
+            <use value="official"/>
+            <value value="cms164v3"/>
+        </identifier>
+        <version value="1.0.0"/>
+        <title value="CQM: Ischemic Vascular Disease (IVD): Use of Aspirin or Another Antithrombotic (CMS 164v3/NQF 0068)"/>
+        <type value="decision-support-rule"/>
+        <status value="draft"/>
+        <description value="This CQM measures the percentage of patients 18 years of age and older who were discharged alive for 
+            acute myocardial infarction (AMI), coronary artery bypass graft (CABG) or percutaneous coronary interventions (PCI) 
+            in the 12 months prior to the measurement period, or who had an active diagnosis of ischemic vascular disease (IVD) 
+            during the measurement period, and who had documentation of use of aspirin or another antithrombotic during the 
+            measurement period."/>
+    </moduleMetadata>
+    <library>
+        <reference value="../cql/cms164v3-cqm-logic.cql"/>
+    </library>
+    <type value="process"/>
+    <group>
+        <identifier>
+            <value value="Population Group"/>
+        </identifier>
+        <population>
+            <type value="initial-population"/>
+            <identifier><value value="initial-population-identifier"/></identifier>
+            <criteria value="InitialPopulation"/> <!-- Is there a namespace when multiple measures are in a single file -->
+        </population>
+        <population>
+            <type value="denominator"/>
+            <identifier><value value="denominator-identifier"/></identifier>
+            <criteria value="Denominator"/>
+        </population>
+        <population>
+            <type value="numerator"/>
+            <identifier><value value="numerator-identifier"/></identifier>
+            <criteria value="Numerator"/>
+        </population>
+    </group>
+</Measure>
