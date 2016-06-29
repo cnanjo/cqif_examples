@@ -19,7 +19,7 @@
             measurement period."/>
     </moduleMetadata>
     <library>
-        <reference value="../cql/cms164v3-cqm-logic.cql"/>
+        <reference value="library/cms164v3-cqm-logic"/>
     </library>
     <type value="process"/>
     <group>
@@ -29,7 +29,7 @@
         <population>
             <type value="initial-population"/>
             <identifier><value value="initial-population-identifier"/></identifier>
-            <criteria value="InitialPopulation"/> <!-- Is there a namespace when multiple measures are in a single file -->
+            <criteria value="Initial Population"/> <!-- Is there a namespace when multiple measures are in a single file -->
         </population>
         <population>
             <type value="denominator"/>

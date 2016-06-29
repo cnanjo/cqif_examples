@@ -47,7 +47,7 @@ define InDemographic:
 define IVD: 
     ["Diagnosis": "Diagnosis, Active: Ischemic Vascular Disease"] IVD where IVD.abatementDate is not null
 
-define hasIVD:
+define HasIVD:
   exists IVD
 
 /*******************************************************************************
@@ -76,7 +76,7 @@ define AMIDischargeIn12MoPriorToMeasurementPeriod:
       	with ["Diagnosis": "Diagnosis Active: Acute Myocardial Infarction"] D
       	  such that D.relevantPeriod starts during E.relevantPeriod
 
-define hasAMI:
+define HasAMI:
   exists AMIDischargeIn12MoPriorToMeasurementPeriod
 
 /**
@@ -100,7 +100,7 @@ define IHDDischargeIn12MoPriorToMeasurementPeriod:
     DischargedDuringACSReviewWindow E
     	with IHDProcedure P such that P.relevantPeriod during E.relevantPeriod
 
-define hasIHD:
+define HasIHD:
 	exists IHDDischargeIn12MoPriorToMeasurementPeriod
 
 /*******************************************************************************
@@ -110,13 +110,13 @@ define EncountersInWhichPatientExpired:
   DischargedDuringACSReviewWindow E
     with ["Patient Characteristic, Expired"] D such that D.expiredDate same day as end of E.relevantPeriod
 
-define excluded:
-  exists(EncountersInWhichPatientExpired)
+define Excluded:
+  exists EncountersInWhichPatientExpired
 
 /*******************************************************************************
  * Handle numerator criteria
  *******************************************************************************/
-define OnAntiThrombotics://Should we include more: e.g., orders, administrations, etc...?
+define "On AntiThrombotics"://Should we include more: e.g., orders, administrations, etc...?
   ["Medication, Active": "Medication, Active: Aspirin and Other Anti-thrombotics"] M   //Need a value set that includes aspirin
     where M.relevantPeriod overlaps before MeasurementPeriod
     and end of M.relevantPeriod is not null
@@ -128,10 +128,10 @@ define OnAntiThrombotics://Should we include more: e.g., orders, administrations
  *******************************************************************************/
 
 define InitialPopulation:
-	InDemographic and (HasIVD OR HasAMI OR HasIHD) and not excluded
+	InDemographic and (HasIVD OR HasAMI OR HasIHD) and not Excluded
 
-define denominator:
+define Denominator:
   InitialPopulation
 
-define numerator:
+define Numerator:
 	InitialPopulation and OnAntiThrombotics
