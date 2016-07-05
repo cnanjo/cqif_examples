@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Library xmlns="http://hl7.org/fhir">
+<Library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://hl7.org/fhir ../../../resources/fhir-all-xsd/library.xsd"
+ xmlns="http://hl7.org/fhir">
     <id value="cms164v3-cqm-logic"/>
     <text>
         <status value="generated"/>
@@ -29,20 +31,92 @@
         <identifier value="QDM" version="5"/>
     </model>
     
+    <!-- Value sets referenced in the library -->
     <valueSet>
-        <name value="Female Administrative Sex"/>
+        <name value="Acute Myocardial Infarction"/>
+        <identifier value="2.16.840.1.113883.3.464.1003.104.12.1001"/>
+    </valueSet>
+    <valueSet>
+        <name value="Ischemic Vascular Disease"/>
+        <identifier value="2.16.840.1.113883.3.464.1003.104.12.1003"/>
+    </valueSet>
+    <valueSet>
+        <name value="Aspirin and Other Anti-thrombotics"/>
+        <identifier value="2.16.840.1.113883.3.464.1003.196.12.1211"/>
+    </valueSet>
+    <valueSet>
+        <name value="Coronary Artery Bypass Graft"/>
+        <identifier value="2.16.840.1.113883.3.464.1003.104.12.1002"/>
+    </valueSet>
+    <valueSet>
+        <name value="Percutaneous Coronary Interventions"/>
         <identifier value="2.16.840.1.113883.3.560.100.2"/>
     </valueSet>
-    <!--   ... other value sets as defined in the library   -->
     
+    <!-- Example of data requirements for a FHIR-complient EHR -->
     <dataRequirement>
         <type value="Condition"/>
         <codeFilter>
             <path value="code"/>
-            <valueSetString value="Other Female Reproductive Conditions"/>
+            <valueSetString value="Ischemic Vascular Disease"/>
         </codeFilter>
     </dataRequirement>
-    <!--   ... other data requirements as defined in the library   -->
+    <dataRequirement>
+        <type value="Condition"/>
+        <codeFilter>
+            <path value="code"/>
+            <valueSetString value="Acute Myocardial Infarction"/>
+        </codeFilter>
+    </dataRequirement>
+    <dataRequirement>
+        <type value="Encounter"/>
+        <codeFilter>
+            <path value="class"/>
+            <valueSetString value="Inpatient"/> <!-- Value set containing IMP, ACUTE, NONAC -->
+        </codeFilter>
+    </dataRequirement>
+    <dataRequirement>
+        <type value="Procedure"/>
+        <codeFilter>
+            <path value="code"/>
+            <valueSetString value="Percutaneous Coronary Interventions"/>
+        </codeFilter>
+    </dataRequirement>
+    <dataRequirement>
+        <type value="Procedure"/>
+        <codeFilter>
+            <path value="code"/>
+            <valueSetString value="Coronary Artery Bypass Graft"/>
+        </codeFilter>
+    </dataRequirement>
+    <dataRequirement>
+        <type value="MedicationAdministration"/>
+        <codeFilter>
+            <path value="medicationCodeableConcept"/>
+            <valueSetString value="Aspirin and Other Anti-thrombotics"/>
+        </codeFilter>
+    </dataRequirement>
+    <dataRequirement>
+        <type value="MedicationDispense"/>
+        <codeFilter>
+            <path value="medicationCodeableConcept"/>
+            <valueSetString value="Aspirin and Other Anti-thrombotics"/>
+        </codeFilter>
+    </dataRequirement>
+    <dataRequirement>
+        <type value="MedicationOrder"/>
+        <codeFilter>
+            <path value="medicationCodeableConcept"/>
+            <valueSetString value="Aspirin and Other Anti-thrombotics"/>
+        </codeFilter>
+    </dataRequirement>
+    <dataRequirement>
+        <type value="MedicationStatement"/>
+        <codeFilter>
+            <path value="medicationCodeableConcept"/>
+            <valueSetString value="Aspirin and Other Anti-thrombotics"/>
+        </codeFilter>
+    </dataRequirement>
     
     <document>
         <contentType value="application/cql+text"/>
