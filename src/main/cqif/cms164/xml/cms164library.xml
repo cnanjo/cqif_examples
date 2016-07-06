@@ -53,7 +53,7 @@
         <identifier value="2.16.840.1.113883.3.560.100.2"/>
     </valueSet>
     
-    <!-- Example of data requirements for a FHIR-complient EHR -->
+    <!-- Example of data requirements for a FHIR-compliant EHR. Like QDM Data Element in an HQMF file -->
     <dataRequirement>
         <type value="Condition"/>
         <codeFilter>

@@ -4,7 +4,8 @@ include Common version '1' called Common
 
 using QDM version '5.0' // NOTE: Should specify the version of QDM, 5.0 in this case
 
-valueset "Acute Myocardial Infarction":'urn:oid:2.16.840.1.113883.3.464.1003.104.12.1001' // NOTE: Terminology references should be urns
+// NOTE: Terminology references should be urns
+valueset "Acute Myocardial Infarction":'urn:oid:2.16.840.1.113883.3.464.1003.104.12.1001'
 valueset "Ischemic Vascular Disease":'urn:oid:2.16.840.1.113883.3.464.1003.104.12.1003'
 valueset "Aspirin and Other Anti-thrombotics":'urn:oid:2.16.840.1.113883.3.464.1003.196.12.1211'
 valueset "Coronary Artery Bypass Graft":'urn:oid:2.16.840.1.113883.3.464.1003.104.12.1002'
